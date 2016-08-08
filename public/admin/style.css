@@ -1,0 +1,36 @@
+body{
+	background-color: #DDE2E4;
+}
+
+.container{
+	background-color: #fff;
+	min-height: 700px;
+}
+
+.navbar-inverse{
+	border: 20px;
+}
+
+.day{
+	font-weight: bold;
+}
+
+.thead, .thead-list-meeting{
+	font-weight: bold;
+	background-color: #36984F;
+	color: #fff;
+}
+
+.img{
+	height: 100px;
+	width: 100px;
+}
+
+.pagination{
+	margin-left: 450px;
+}
+
+/*.submit{
+	margin-left: 20px;
+	padding-bottom: 10px;
+}*/
