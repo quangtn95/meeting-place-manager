@@ -8,7 +8,7 @@
         <thead>
             <tr align="center" class="thead-list-meeting">
                 <td>Date</td>
-                <td>Name</td>
+                <td>Title</td>
                 <td>Time Start</td>
                 <td>Time End</td>
                 <td>Room</td>

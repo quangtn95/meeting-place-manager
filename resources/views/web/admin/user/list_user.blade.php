@@ -21,7 +21,7 @@
         <tbody>
             @for($i = 1; $i < 11; $i++)
                 <tr align="center">
-                    <td class="stt">{{ $i }}</td>
+                    <td class="num">{{ $i }}</td>
                     <td>...</td>
                     <td>...</td>
                     <td>...</td>

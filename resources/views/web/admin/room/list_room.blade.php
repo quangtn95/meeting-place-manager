@@ -19,7 +19,7 @@
         <tbody>
             
             <tr align="center">
-                <td class="">1</td>
+                <td class="num">1</td>
                 <td class=""><a href="">Phòng số 1</a></td>
                 <td><a href="#" ><img src="{!! asset('public/admin/images/10.jpg') !!}" class="img"></a></td>
                 <td>10</td>
@@ -32,7 +32,7 @@
             </tr>
 
             <tr align="center">
-                <td class="">2</td>
+                <td class="num">2</td>
                 <td class=""><a href="">Phòng số 2</a></td>
                 <td><a href="#" ><img src="{!! asset('public/admin/images/12.jpg') !!}" class="img"></a></td>
                 <td>12</td>
@@ -45,7 +45,7 @@
             </tr>
 
             <tr align="center">
-                <td class="">3</td>
+                <td class="num">3</td>
                 <td class=""><a href="">Phòng số 3</a></td>
                 <td><a href="#" ><img src="{!! asset('public/admin/images/15.jpg') !!}" class="img"></a></td>
                 <td>15</td>
@@ -58,7 +58,7 @@
             </tr>
 
             <tr align="center">
-                <td class="">4</td>
+                <td class="num">4</td>
                 <td class=""><a href="">Phòng số 4</a></td>
                 <td><a href="#" ><img src="{!! asset('public/admin/images/20.jpg') !!}" class="img"></a></td>
                 <td>20</td>

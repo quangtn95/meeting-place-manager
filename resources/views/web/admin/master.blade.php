@@ -6,7 +6,10 @@
     <title>@yield('title')</title>
     <link rel="stylesheet" href="">
     <!-- Bootstrap Core CSS -->
+    <link href="{{ url('public/admin/bootstrap-3.3.7-dist/css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ url('public/admin/bootstrap-3.3.7-dist/css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <link href="{{ url('public/admin/datetimepicker/jquery.datetimepicker.css') }}" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="{{ url('public/admin/bootstrap-3.3.7-dist/css/fonts/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
@@ -79,6 +82,10 @@
                         <li><a href="#">Add User</a></li>
                     </ul>
                 </div>
+
+                <div class="btn-group">
+                    <a href="" class="btn btn-default">&nbsp;Search</a>
+                </div>
             </div>{{-- end Menu-main --}}
             
             <div class="content">
@@ -90,9 +97,13 @@
 
              <!-- jQuery -->
             <script src="{{ url('public/admin/jquery/jquery-3.1.0.min.js') }}"></script>
+            
+            <script src="{{ url('public/admin/datetimepicker/jquery.datetimepicker.full.js') }}"></script>
 
             <!-- Bootstrap Core JavaScript -->
-            <script src="{{ url('public/admin/bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"></script>            
+            <script src="{{ url('public/admin/bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"></script>
+
+            <script src="{{ url('public/admin/jquery/myscript.js') }}"></script>
         </div>
         {{-- end Container --}}
     </div>

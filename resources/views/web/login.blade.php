@@ -19,7 +19,6 @@
 </head>
 
 <body>
-
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
@@ -34,11 +33,11 @@
                             <fieldset>
                                 <div class="form-group">
                                     <label for="username">Username</label>
-                                    <input class="form-control" placeholder="Username" name="username" id="username" type="text" >
+                                    <input class="form-control" name="username" id="username" type="text" placeholder="Username" >
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label>
-                                    <input class="form-control" placeholder="Password" name="password" id="password" type="password">
+                                    <input class="form-control" name="password" id="password" type="password" placeholder="Password">
                                 </div>
                                 <button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
                             </fieldset>

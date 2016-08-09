@@ -11,7 +11,7 @@ body{
 	border: 20px;
 }
 
-.day{
+.day, .num, .title{
 	font-weight: bold;
 }
 
@@ -22,7 +22,7 @@ body{
 }
 
 .img{
-	height: 100px;
+	height: 80px;
 	width: 100px;
 }
 
@@ -30,7 +30,6 @@ body{
 	margin-left: 450px;
 }
 
-/*.submit{
-	margin-left: 20px;
-	padding-bottom: 10px;
-}*/
+.remove-form{
+	margin-left: 10px;
+}

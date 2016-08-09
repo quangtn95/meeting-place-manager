@@ -34,8 +34,9 @@
                     <div class="form-group">
                         <label>Role</label>
                         <select name="txtrole" class="form-control" id="form_role">
-                            <option value="1">2</option>
-                            <option value="2">3</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
                         </select>
                     </div>
                     <div class="submit">

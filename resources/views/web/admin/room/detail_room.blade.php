@@ -25,7 +25,7 @@
             @for($i = 7; $i < 18; $i++)
 				<tr align="center">
 	                <td class="">{{ $i }}</td>
-	                <td><a href="">Họp dự án 1 <br> Từ 7h - 9h</a></td>
+	                <td>Họp dự án 1 <br> Từ 7h - 9h</td>
 	                <td></td>
 	                <td></td>
 	                <td></td>

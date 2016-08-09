@@ -11,39 +11,57 @@
             </div>
 
             <div class="panel-body">
-                <form id="registration_form" name="form1" method="POST" action="">
+                <form class="form-horizontal" id="add_meeting_form" name="form1" method="POST" action="">
                     <div style="display:none;">
                         <input type="hidden" name="_method" value="POST"/>
                     </div>
 
                     <div class="form-group">
-                        <label>Meeting Name</label>
-                        <input name="txtname" class="form-control" maxlength="256" type="text" id="form_name"/>
+                        <label class="col-md-3 control-label">Meeting Name</label>
+                        <div class="col-md-9">
+                            <input name="txtname" class="form-control" maxlength="256" type="text" id="form_name"/>
+                        </div>
                     </div>
                     
                     <div class="form-group">
-                        <label>Date</label>
-                        <input name="txtdate" class="form-control" maxlength="256" type="text" id="form_date" placeholder="Sẽ sửa lại cách nhập"/>
-                    </div>{{-- Sẽ sửa lại cách nhập --}}
-
-                    <div class="form-group">
-                        <label>Time Start</label>
-                        <input name="txtstart" class="form-control" maxlength="256" type="text" id="form_start" placeholder="Sẽ sửa lại cách nhập"/>
-                    </div>{{-- Sẽ sửa lại cách nhập --}}
-
-                    <div class="form-group">
-                        <label>Time End</label>
-                        <input name="txtend" class="form-control" maxlength="256" type="text" id="form_end" placeholder="Sẽ sửa lại cách nhập"/>
-                    </div>{{-- Sẽ sửa lại cách nhập --}}
-
-                    <div class="form-group">
-                        <label>Number People</label>
-                        <input name="txtnum" class="form-control" maxlength="256" type="text" id="form_number"/>
+                        <label class="col-md-3 control-label">Time Start</label>
+                        <div class="col-md-4">
+                            <input name="txtdate" class="datetimepicker form-control" id="form_date"/>
+                        </div>
                     </div>
 
                     <div class="form-group">
-                        <label>Description</label>
-                        <input name="txtdes" class="form-control" maxlength="256" type="text" id="form_description"/>
+                        <label class="col-md-3 control-label">Time End</label>
+                        <div class="col-md-4">
+                            <input name="txtdate" class="datetimepicker form-control" id="form_date"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Địa điểm họp</label>
+                        <div class="col-md-4">
+                            <select class="form-control">
+                                <option value="">Tất cả</option>
+                                <option value="Phòng họp số 1">Phòng họp số 1</option>
+                                <option value="Phòng họp số 2">Phòng họp số 2</option>
+                                <option value="Phòng họp số 3">Phòng họp số 3</option>
+                                <option value="Phòng họp số 4">Phòng họp số 4</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Number People</label>
+                        <div class="col-md-9">
+                            <input name="txtnum" class="form-control" maxlength="256" type="text" id="form_number"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Description</label>
+                        <div class="col-md-9">
+                            <textarea class="form-control" id="form_description" name="txtdes" rows="3"></textarea>
+                        </div>
                     </div>
                         
                     <div class="submit">

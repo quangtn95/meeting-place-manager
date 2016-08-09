@@ -34,17 +34,31 @@ Route::get('admin/add/room', function() {
 Route::get('admin/list/meeting', function() {
 	return view('web.admin.meeting.list_meeting');
 });
+Route::get('admin/detail/meeting', function() {
+	return view('web.admin.meeting.detail_meeting');
+});
 Route::get('admin/add/meeting', function() {
 	return view('web.admin.meeting.add_meeting');
+});
+Route::get('admin/approve/form', function() {
+	return view('web.admin.meeting.approve_form');
 });
 
 //User
 Route::get('admin/list/user', function() {
 	return view('web.admin.user.list_user');
 });
+Route::get('admin/detail/user', function() {
+	return view('web.admin.user.detail_user');
+});
 Route::get('admin/add/user', function() {
 	return view('web.admin.user.add_user');
 });
 Route::get('admin/edit/pass', function() {
 	return view('web.admin.user.edit_pass');
+});
+
+//Search
+Route::get('admin/search', function() {
+	return view('web.admin.search.search');
 });

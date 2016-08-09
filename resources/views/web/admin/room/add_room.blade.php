@@ -11,14 +11,14 @@
             </div>
 
             <div class="panel-body">
-                <form id="registration_form" name="registration_form" method="POST" enctype="multipart/form-data" action="" accept-charset="utf-8">
+                <form id="addroom_form" name="addroom_form" method="POST" enctype="multipart/form-data" action="" accept-charset="utf-8">
                     <div style="display:none;">
                         <input type="hidden" name="_method" value="POST"/>
                     </div>
 
                     <div class="row">
                         <div class="col-sm-5">
-                            <img src="{!! asset('public/admin/images/icon-profile.png') !!}" class="img-responsive" alt="Room Photo"/>
+                            <img src="{!! asset('public/admin/images/meeting-icon-png-icon-46945-2.png') !!}" class="img-responsive" alt="Room Photo"/>
                             <input type="file" name="hinh" id="form_image"/>
                             <span class="error_form" id="image_error_message"></span>
                         </div>
@@ -49,6 +49,5 @@
             </div>
         </div>
     </div>
-
 </div>
 @stop
