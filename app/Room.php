@@ -6,5 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Room extends Model
 {
-    
+    protected $table = 'rooms';
+
+    protected $fillable = ['name', 'image', 'capacity', 'equipment'];
+
+    //public $timestamp = false;
+
+    public function meeting() {
+        return $this->hasMany('App\Meeting');
+    }
+
+    public function form() {
+        return $this->hasMany('App\Form');
+    }
 }

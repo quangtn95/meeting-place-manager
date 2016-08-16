@@ -1,12 +1,12 @@
 @extends('web.admin.master')
-@section('title', 'Add Room')
+@section('title', 'Edit Room')
 @section('content')
 <div class="row">
     <div><br/></div>
     <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title">Add Room</h3>
+                <h3 class="panel-title">Edit Room</h3>
             </div>
 
             @if(count($errors) > 0)
@@ -20,7 +20,7 @@
             @endif
 
             <div class="panel-body">
-                <form id="addroom_form" name="addroom_form" method="POST" enctype="multipart/form-data" action="{!! route('admin.room.postAdd') !!}" accept-charset="utf-8">
+                <form id="addroom_form" name="addroom_form" method="POST" enctype="multipart/form-data" action="{!! URL::route('admin.room.postEdit', $data['id']) !!}" accept-charset="utf-8">
                     <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                     <div style="display:none;">
                         <input type="hidden" name="_method" value="POST"/>
@@ -35,22 +35,22 @@
                         <div class="col-sm-7">
                             <div class="form-group">
                                 <label>Room Name</label>
-                                <input name="txtname" class="form-control" maxlength="100" type="text" id="form_name" value ="{!! old('txtname', isset($_POST['txtname']) ? $_POST['txtname'] : null) !!}"/>
+                                <input name="txtname" class="form-control" maxlength="100" type="text" id="form_name" value="{!! old('txtname', isset($data) ? $data['name'] : null) !!}"/>
                             </div>
 
                             <div class="form-group">
                                 <label>Capacity</label>
-                                <input name="txtcapa" class="form-control" maxlength="100" type="text" id="form_capacity"/>
+                                <input name="txtcapa" class="form-control" maxlength="100" type="text" id="form_capacity" value="{!! old('txtcapa', isset($data) ? $data['capacity'] : null) !!}"/>
                             </div>
 
                             <div class="form-group">
                                 <label>Equipment</label>
-                                <input name="txtequip" class="form-control" maxlength="100" type="text" id="form_equipment" value="Trống"/>
+                                <input name="txtequip" class="form-control" maxlength="100" type="text" id="form_equipment" value="{!! old('txtequip', isset($data) ? $data['equipment'] : null) !!}"/>
                             </div>
 
                             <div>
                                 <a href="" class="btn btn-danger">Cancel</a>
-                                <input class="btn btn-success" type="submit" name="button" value="Add"/>
+                                <input class="btn btn-success" type="submit" name="button" value="Update"/>
                             </div>
                         </div>
                     </div>

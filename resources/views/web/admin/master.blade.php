@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -12,7 +12,7 @@
     <link href="{{ url('public/admin/datetimepicker/jquery.datetimepicker.css') }}" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="{{ url('public/admin/bootstrap-3.3.7-dist/css/fonts/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url('public/admin/bootstrap-3.3.7-dist/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 
     <!-- Custom CSS -->
     <link href="{{ url('public/admin/style.css') }}" rel="stylesheet">
@@ -43,7 +43,7 @@
                                     <li><a href="#"><i class="glyphicon glyphicon-user"></i> User Profile</a></li>
                                     <li><a href="#"><i class="glyphicon glyphicon-cog"></i> Password</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="#"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
+                                    <li><a href="{!! URL::route('login') !!}"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -57,8 +57,8 @@
                         Room <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a href="#">List Room</a></li>
-                        <li><a href="#">Add Room</a></li>
+                        <li><a href="{!! URL::route('admin.room.getList') !!}">List Room</a></li>
+                        <li><a href="{!! URL::route('admin.room.getAdd') !!}">Add Room</a></li>
                     </ul>
                 </div>
 
@@ -87,6 +87,15 @@
                     <a href="" class="btn btn-default">&nbsp;Search</a>
                 </div>
             </div>{{-- end Menu-main --}}
+            
+            <div><br/></div>
+            <div class="col-md-12">
+                @if(Session::has('flash_message'))
+                    <div class="alert alert-success">
+                        {!! Session::get('flash_message') !!}
+                    </div>
+                @endif
+            </div>
             
             <div class="content">
                 

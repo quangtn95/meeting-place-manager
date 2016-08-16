@@ -12,22 +12,27 @@
 */
 
 // Route::get('/', function () {
-//     return view('welcome');
+//     return view('web.login');
 // });
 
-Route::get('/', function () {
-    return view('web.login');
+Route::group(['prefix'=>'/'], function () {
+    Route::get('', ['as'=>'login', 'uses'=>'LoginController@login']);
 });
 
 //Room
-Route::get('admin/list/room', function() {
-	return view('web.admin.room.list_room');
-});
-Route::get('admin/detail/room', function() {
-	return view('web.admin.room.detail_room');
-});
-Route::get('admin/add/room', function() {
-	return view('web.admin.room.add_room');
+Route::group(['prefix'=>'admin'], function() {
+	Route::group(['prefix'=>'room'], function() {
+		Route::get('list', ['as'=>'admin.room.getList', 'uses'=>'RoomController@getList']);
+		Route::get('detail/{id}',['as'=>'admin.room.getDetail', 'uses'=>'RoomController@getDetail']);
+
+		Route::get('add', ['as'=>'admin.room.getAdd', 'uses'=>'RoomController@getAdd']);
+		Route::post('add', ['as'=>'admin.room.postAdd', 'uses'=>'RoomController@postAdd']);
+
+		Route::get('edit/{id}', ['as'=>'admin.room.getEdit', 'uses'=>'RoomController@getEdit']);
+		Route::post('edit/{id}', ['as'=>'admin.room.postEdit', 'uses'=>'RoomController@postEdit']);
+
+		Route::get('delete/{id}', ['as'=>'admin.room.getDelete', 'uses'=>'RoomController@getDelete']);
+	});
 });
 
 //Meeting
