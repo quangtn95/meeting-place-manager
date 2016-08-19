@@ -1,7 +1,6 @@
 @extends('web.admin.master')
 @section('title', 'Detail Room')
 @section('content')
-<br>
 <a href="" class="btn btn-default">&nbsp;Back</a>
 <h3 align="center">Lịch họp phòng họp số 1</h3>
 

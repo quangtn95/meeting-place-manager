@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>@yield('title')</title>
     <link rel="stylesheet" href="">
+    <link rel="Shortcut Icon" href="{{ url('public/admin/images/logo.png') }}"/>
+
     <!-- Bootstrap Core CSS -->
     <link href="{{ url('public/admin/bootstrap-3.3.7-dist/css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ url('public/admin/bootstrap-3.3.7-dist/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -43,7 +45,7 @@
                                     <li><a href="#"><i class="glyphicon glyphicon-user"></i> User Profile</a></li>
                                     <li><a href="#"><i class="glyphicon glyphicon-cog"></i> Password</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="{!! URL::route('login') !!}"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
+                                    <li><a href="{!! URL::route('getLogin') !!}"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -67,8 +69,8 @@
                         Meeting <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a href="#">List Meeting</a></li>
-                        <li><a href="#">Add Meeting</a></li>
+                        <li><a href="{!! URL::route('admin.meeting.getList') !!}">List Meeting</a></li>
+                        <li><a href="{!! URL::route('admin.meeting.getAdd') !!}">Add Meeting</a></li>
                         <li><a href="#">Approve Form</a></li>
                     </ul>
                 </div>
@@ -84,7 +86,7 @@
                 </div>
 
                 <div class="btn-group">
-                    <a href="" class="btn btn-default">&nbsp;Search</a>
+                    <a href="{!! URL::route('admin.search') !!}" class="btn btn-default">&nbsp;Search</a>
                 </div>
             </div>{{-- end Menu-main --}}
             

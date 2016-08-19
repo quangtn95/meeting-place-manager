@@ -20,7 +20,7 @@
             @endif
 
             <div class="panel-body">
-                <form id="addroom_form" name="addroom_form" method="POST" enctype="multipart/form-data" action="{!! URL::route('admin.room.postEdit', $data['id']) !!}" accept-charset="utf-8">
+                <form id="editroom_form" name="editroom_form" method="POST" enctype="multipart/form-data" action="{!! URL::route('admin.room.postEdit', $data['id']) !!}" accept-charset="utf-8">
                     <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                     <div style="display:none;">
                         <input type="hidden" name="_method" value="POST"/>
@@ -45,12 +45,16 @@
 
                             <div class="form-group">
                                 <label>Equipment</label>
-                                <input name="txtequip" class="form-control" maxlength="100" type="text" id="form_equipment" value="{!! old('txtequip', isset($data) ? $data['equipment'] : null) !!}"/>
+                                {{-- <input name="txtequip" class="form-control" maxlength="100" type="text" id="form_equipment" value="{!! old('txtequip', isset($data) ? $data['equipment'] : null) !!}"/> --}}
+                                <div>
+                                    <input type="checkbox" name="equipment[]" value="Mic"/>Mic <br/>
+                                    <input type="checkbox" name="equipment[]" value="Máy chiếu"/>Máy chiếu <br/>
+                                </div>
                             </div>
 
                             <div>
-                                <a href="" class="btn btn-danger">Cancel</a>
-                                <input class="btn btn-success" type="submit" name="button" value="Update"/>
+                                <a href="{!! URL::route('admin.room.getList') !!}" class="btn btn-danger">Cancel</a>
+                                <input class="btn btn-success" type="submit" name="button" value="Update" onclick="return confirm_update('Bạn có chắc muốn cập nhật không?')"/>
                             </div>
                         </div>
                     </div>

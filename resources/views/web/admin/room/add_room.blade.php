@@ -40,17 +40,22 @@
 
                             <div class="form-group">
                                 <label>Capacity</label>
-                                <input name="txtcapa" class="form-control" maxlength="100" type="text" id="form_capacity"/>
+                                <input name="txtcapa" class="form-control" maxlength="100" type="text" id="form_capacity" value ="{!! old('txtcapa', isset($_POST['txtcapa']) ? $_POST['txtcapa'] : null) !!}"/>
                             </div>
 
                             <div class="form-group">
-                                <label>Equipment</label>
-                                <input name="txtequip" class="form-control" maxlength="100" type="text" id="form_equipment" value="Trống"/>
+                                <label>Equipment</label><br/>
+                                {{-- <input name="txtequip" class="form-control" maxlength="100" type="text" id="form_equipment" value="Trống"/> --}}
+                                <div>
+                                    <input type="checkbox" name="equipment[]" value="Mic"/>Mic <br/>
+                                    <input type="checkbox" name="equipment[]" value="Máy chiếu"/>Máy chiếu <br/>
+                                </div>
+                                
                             </div>
 
                             <div>
-                                <a href="" class="btn btn-danger">Cancel</a>
-                                <input class="btn btn-success" type="submit" name="button" value="Add"/>
+                                <a href="{!! route('admin.room.getList') !!}" class="btn btn-danger">Cancel</a>
+                                <input class="btn btn-success" type="submit" name="button" value="Add" onclick="return confirm_update('Bạn có chắc muốn thêm không?')"/>
                             </div>
                         </div>
                     </div>

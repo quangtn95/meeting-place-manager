@@ -45,7 +45,7 @@
 
                 </form>
 
-                <input class="btn btn-info" type="submit" name="button" value="Search"/>
+                <input class="btn btn-info search" type="submit" name="button" value="Search"/>
             </div>
         </div>
     </div>
@@ -72,7 +72,7 @@
             <tr align="center">
                 <td class="">1</td>
                 <td class=""><a href="">Phòng số 1</a></td>
-                <td><a href="#" ><img src="{!! asset('public/admin/images/10.jpg') !!}" class="img"></a></td>
+                <td><a href="#" ><img src="{!! asset('public/uploads/10.jpg') !!}" class="img"></a></td>
                 <td>10</td>
                 <td>Không có</td>
                 <td><a href="" class="btn btn-info detail">Detail</a></td>
@@ -81,7 +81,7 @@
             <tr align="center">
                 <td class="">2</td>
                 <td class=""><a href="">Phòng số 2</a></td>
-                <td><a href="#" ><img src="{!! asset('public/admin/images/12.jpg') !!}" class="img"></a></td>
+                <td><a href="#" ><img src="{!! asset('public/uploads/12.jpg') !!}" class="img"></a></td>
                 <td>12</td>
                 <td>Không có</td>
                 <td><a href="" class="btn btn-info detail">Detail</a></td>
@@ -90,7 +90,7 @@
             <tr align="center">
                 <td class="">3</td>
                 <td class=""><a href="">Phòng số 3</a></td>
-                <td><a href="#" ><img src="{!! asset('public/admin/images/15.jpg') !!}" class="img"></a></td>
+                <td><a href="#" ><img src="{!! asset('public/uploads/15.jpg') !!}" class="img"></a></td>
                 <td>15</td>
                 <td>Mic</td>
                 <td><a href="" class="btn btn-info detail">Detail</a></td>

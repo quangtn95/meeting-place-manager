@@ -1,8 +1,7 @@
 @extends('web.admin.master')
 @section('title', 'Detail Meeting')
 @section('content')
-<br>
-<a href="" class="btn btn-default">&nbsp;Back</a>
+<a href="{!! URL::route('admin.meeting.getList') !!}" class="btn btn-default">&nbsp;Back</a>
 <h3 align="center">Chi tiết cuộc họp</h3>
 
 <div class="row">
@@ -11,45 +10,48 @@
         <caption></caption>
         
         <tbody>
-            <tr>
-                <td class = "title">Title</td>
-                <td>Cuộc họp số 1</td>
-            </tr>
+            
+                <tr>
+                    <td class = "title">Title</td>
+                    <td>{!! ucfirst($detail->name) !!}</td>
+                </tr>
 
-            <tr>
-                <td class = "title">Date</td>
-                <td>01-01-2016</td>
-            </tr>
+                <tr>
+                    <td class = "title">Date</td>
+                    <td>{!! \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $detail->time_start)->format('d/m/Y') !!}</td>
+                </tr>
 
-            <tr>
-                <td class = "title">Time start</td>
-                <td>07:00</td>
-            </tr>
+                <tr>
+                    <td class = "title">Time start</td>
+                    <td>{!! \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $detail->time_start)->format('H:i') !!}</td>
+                </tr>
 
-            <tr>
-                <td class = "title">Time end</td>
-                <td>09:00</td>
-            </tr>
+                <tr>
+                    <td class = "title">Time end</td>
+                    <td>{!! \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $detail->time_end)->format('H:i') !!}</td>
+                </tr>
 
-            <tr>
-                <td class = "title">Number People</td>
-                <td>10</td>
-            </tr>
+                <tr>
+                    <td class = "title">Number People</td>
+                    <td>{!! $detail->num_people !!}</td>
+                </tr>
 
-            <tr>
-                <td class = "title">Room</td>
-                <td>Phong họp số 1</td>
-            </tr>
+                <tr>
+                    <td class = "title">Room</td>
+                    <td>{!! ucfirst($detail->room_name) !!}</td>
+                </tr>
 
-            <tr>
-                <td class = "title">Censor</td>
-                <td>nguyenhuyhung</td>
-            </tr>
+                <tr>
+                    <td class = "title">Censor</td>
+                    <td>{!! $detail->users_name !!}</td>
+                </tr>
 
-            <tr>
-                <td class = "title">Description</td>
-                <td>Gặp gỡ, trao đổi với khách hàng về một số vấn đề liên quan tới dự án</td>
-            </tr>
+                <tr>
+                    <td class = "title">Description</td>
+                    <td>{!! $detail->description !!}</td>
+                </tr>
+
+            
         </tbody>
     </table>
 	   

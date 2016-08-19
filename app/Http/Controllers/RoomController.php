@@ -13,7 +13,7 @@ use Input;
 class RoomController extends Controller
 {
 	public function getList(){
-		$data = Room::select('id', 'name', 'image', 'capacity', 'equipment')->get();
+		$data = Room::select('id', 'name', 'image', 'capacity', 'equipment')->orderBy('name', 'asc')->get();
 		return view('web.admin.room.list_room',compact('data'));
 	}
 
@@ -32,14 +32,29 @@ class RoomController extends Controller
         $success = $avatar->move($upload, $filename);
 
         if($success){
-            $room = new Room;
-            $room->name      = $request->Input('txtname');
-            $room->capacity  = $request->Input('txtcapa');
-            $room->equipment = $request->Input('txtequip');
-            $room->image     = $filename;
+            if(($request->get('equipment')) != null) {
+                $room = new Room;
+                $equipment = implode(', ', Input::get('equipment'));
 
-            $room->save();
-            return redirect()->route('admin.room.getList')->with(['flash_message'=>'Success !! Complete Add Room']);
+                $room->name      = $request->Input('txtname');
+                $room->capacity  = $request->Input('txtcapa');
+                $room->equipment = $equipment;
+                $room->image     = $filename;
+                
+                $room->save();
+                return redirect()->route('admin.room.getList')->with(['flash_message'=>'Success !! Complete Add Room']);
+            }else {
+                $room = new Room;
+
+                $room->name      = $request->Input('txtname');
+                $room->capacity  = $request->Input('txtcapa');
+                $room->equipment = "Trống";
+                $room->image     = $filename;
+                
+                $room->save();
+                return redirect()->route('admin.room.getList')->with(['flash_message'=>'Success !! Complete Add Room']);
+            }
+                
         }
         	
     }
@@ -64,21 +79,38 @@ class RoomController extends Controller
             $success = $avatar->move($upload, $filename);
 
             if($success) {
-                $room = Room::find($id);
-                $room->name      = $request->txtname;
-                $room->capacity  = $request->txtcapa;
-                $room->equipment = $request->txtequip;
-                $room->image     = $filename;
-                $room->save();
-                return redirect()->route('admin.room.getList')->with(['flash_message'=>'Success !! Complete Edit Room']);
+                if(($request->get('equipment')) != null) {
+                    $room = Room::find($id);
+                    $equipment = implode(', ', Input::get('equipment'));
+
+                    $room->name      = $request->txtname;
+                    $room->capacity  = $request->txtcapa;
+                    $room->equipment = $equipment;
+                    $room->image     = $filename;
+                    $room->save();
+                    return redirect()->route('admin.room.getList')->with(['flash_message'=>'Success !! Complete Edit Room']);
+                }
+                else{
+                    $room = Room::find($id);
+
+                    $room->name      = $request->txtname;
+                    $room->capacity  = $request->txtcapa;
+                    $room->equipment = "Trống";
+                    $room->image     = $filename;
+                    $room->save();
+                    return redirect()->route('admin.room.getList')->with(['flash_message'=>'Success !! Complete Edit Room']);
+                }
+                    
             } else {
                 return redirect()->route('admin.room.getList')->with(['flash_message'=>'Error']);
             }
         }else{
             $room = Room::find($id);
+            $equipment = implode(', ', Input::get('equipment'));
+
             $room->name      = $request->txtname;
             $room->capacity  = $request->txtcapa;
-            $room->equipment = $request->txtequip;
+            $room->equipment = $equipment;
             $room->save();
             return redirect()->route('admin.room.getList')->with(['flash_message'=>'Success !! Complete Edit Room']);
         }

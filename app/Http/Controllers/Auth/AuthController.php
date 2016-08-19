@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Auth;
 use App\User;
 use Validator;
+use Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+
+use App\Http\Requests\LoginRequest;
 
 class AuthController extends Controller
 {
@@ -46,14 +50,14 @@ class AuthController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
-        ]);
-    }
+    // protected function validator(array $data)
+    // {
+    //     return Validator::make($data, [
+    //         'name' => 'required|max:255',
+    //         'email' => 'required|email|max:255|unique:users',
+    //         'password' => 'required|min:6|confirmed',
+    //     ]);
+    // }
 
     /**
      * Create a new user instance after a valid registration.
@@ -61,12 +65,33 @@ class AuthController extends Controller
      * @param  array  $data
      * @return User
      */
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+    // protected function create(array $data)
+    // {
+    //     return User::create([
+    //         'name' => $data['name'],
+    //         'email' => $data['email'],
+    //         'password' => bcrypt($data['password']),
+    //     ]);
+    // }
+
+    public function getLogin() {
+        return view('web.login');
+    }
+
+    public function postLogin(LoginRequest $request) {
+        $login = array(
+            'username' => $request->username,
+            'password' => $request->password,
+            'role'     => 1
+        );
+        if(Auth::attempt($login)) {
+            return redirect()->intended('admin.room.getList');
+        }else {
+            return redirect()->back();
+        }
+
+        // if (Auth::attempt(['username' => $request->username, 'password' => $request->password, 'role' => 1])) {
+        //     return redirect()->intended('admin.room.getList');
+        // }
     }
 }

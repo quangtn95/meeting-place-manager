@@ -12,7 +12,6 @@
                 <td>Avatar</td>
                 <td>Capacity</td>
                 <td>Equipment</td>
-                <td>View</td>
                 <td>Action</td>
             </tr>
         </thead>
@@ -23,14 +22,13 @@
 
             <tr align="center">
                 <td class="num">{!! $stt !!}</td>
-                <td class=""><a href="{!! URL::route('admin.room.getDetail', $item['id']) !!}">{!! $item["name"] !!}</a></td>
+                <td class=""><a href="{!! URL::route('admin.room.getDetail', $item['id']) !!}">{!! ucfirst($item["name"]) !!}</a></td>
                 <td><a href="{!! URL::route('admin.room.getDetail', $item['id']) !!}" ><img src="{!! asset('public/uploads/'.$item->image) !!}" class="img"></a></td>
                 <td>{!! $item["capacity"] !!}</td>
                 <td>{!! $item["equipment"] !!}</td>
-                <td><a href="{!! URL::route('admin.room.getDetail', $item['id']) !!}" class="btn btn-info detail">Detail</a></td>
                 <td>
                     <a href="{!! URL::route('admin.room.getEdit', $item['id']) !!}" class="btn btn-success">Edit</a>&nbsp;
-                    <a onclick="return xacnhanxoa('Bạn có chắc muốn xóa không')" href="{!! URL::route('admin.room.getDelete', $item['id']) !!}" class="btn btn-danger">Delete</a>
+                    <a onclick="return confirm_update('Bạn có chắc muốn xóa không?')" href="{!! URL::route('admin.room.getDelete', $item['id']) !!}" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
             @endforeach

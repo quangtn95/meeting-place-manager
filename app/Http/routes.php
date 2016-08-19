@@ -15,9 +15,17 @@
 //     return view('web.login');
 // });
 
+Route::controllers([
+	'auth' => 'Auth\AuthController',
+	'password' => 'Auth\PasswordController'
+]);
+
 Route::group(['prefix'=>'/'], function () {
-    Route::get('', ['as'=>'login', 'uses'=>'LoginController@login']);
+    //Route::get('', ['as'=>'login', 'uses'=>'LoginController@login']);
+    Route::get('', ['as'=>'getLogin', 'uses'=>'Auth\AuthController@getLogin']);
+    Route::post('', ['as'=>'postLogin', 'uses'=>'Auth\AuthController@postLogin']);
 });
+
 
 //Room
 Route::group(['prefix'=>'admin'], function() {
@@ -35,19 +43,25 @@ Route::group(['prefix'=>'admin'], function() {
 	});
 });
 
+
 //Meeting
-Route::get('admin/list/meeting', function() {
-	return view('web.admin.meeting.list_meeting');
+Route::group(['prefix'=>'admin'], function() {
+	Route::group(['prefix'=>'meeting'], function() {
+		Route::get('list', ['as'=>'admin.meeting.getList', 'uses'=>'MeetingController@getList']);
+		Route::get('detail/{id}',['as'=>'admin.meeting.getDetail', 'uses'=>'MeetingController@getDetail']);
+
+		Route::get('add', ['as'=>'admin.meeting.getAdd', 'uses'=>'MeetingController@getAdd']);
+		Route::post('add', ['as'=>'admin.meeting.postAdd', 'uses'=>'MeetingController@postAdd']);
+
+		Route::get('edit/{id}', ['as'=>'admin.meeting.getEdit', 'uses'=>'MeetingController@getEdit']);
+		Route::post('edit/{id}', ['as'=>'admin.meeting.postEdit', 'uses'=>'MeetingController@postEdit']);
+
+		Route::get('delete/{id}', ['as'=>'admin.meeting.getDelete', 'uses'=>'MeetingController@getDelete']);
+
+		//Route::get('delete/{id}', ['as'=>'admin.room.getDelete', 'uses'=>'RoomController@getDelete']);
+	});
 });
-Route::get('admin/detail/meeting', function() {
-	return view('web.admin.meeting.detail_meeting');
-});
-Route::get('admin/add/meeting', function() {
-	return view('web.admin.meeting.add_meeting');
-});
-Route::get('admin/approve/form', function() {
-	return view('web.admin.meeting.approve_form');
-});
+
 
 //User
 Route::get('admin/list/user', function() {
@@ -63,7 +77,9 @@ Route::get('admin/edit/pass', function() {
 	return view('web.admin.user.edit_pass');
 });
 
+
 //Search
 Route::get('admin/search', function() {
 	return view('web.admin.search.search');
 });
+Route::get('admin/search', ['as'=>'admin.search', 'uses'=>'SearchController@getSearch']);

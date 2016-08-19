@@ -15,6 +15,10 @@ body{
 	font-weight: bold;
 }
 
+.num {
+	vertical-align: middle;
+}
+
 .thead, .thead-list-meeting{
 	font-weight: bold;
 	background-color: #36984F;
@@ -33,3 +37,17 @@ body{
 .remove-form{
 	margin-left: 10px;
 }
+
+.search{
+	margin-left: 500px;
+}
+
+a:link { 
+	text-decoration: none; 
+}
+
+a:hover { 
+	color: #F5261C;
+}
+
+/**/
