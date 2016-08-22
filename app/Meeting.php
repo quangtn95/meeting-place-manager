@@ -10,6 +10,10 @@ class Meeting extends Model
 
     protected $fillable = ['name', 'time_start', 'time_end', 'num_people', 'description', 'room_id', 'user_id'];
 
+ //    public function setTimeStartAttribute($date){
+ //  		$this->attributes['created_at'] = Carbon::createFromFormat('Y-m-d',$date);
+	// }
+
     public $timestamp = false;
 
     public function user() {

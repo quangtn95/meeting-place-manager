@@ -11,11 +11,13 @@ use App\Meeting;
 use App\Room;
 use Input;
 use DB;
+use Carbon\Carbon;
 
 class MeetingController extends Controller
 {
     public function getList(){
-		$data = Meeting::select('id', 'name', 'time_start', 'time_end', 'num_people', 'description', 'room_id', 'user_id')->orderBy('time_start', 'asc')->get();
+		$data = Meeting::select('id', 'name', 'time_start', 'time_end', 'num_people', 'description', 'room_id', 'user_id')
+        ->orderBy('time_start', 'asc')->paginate(7);
 		return view('web.admin.meeting.list_meeting',compact('data'));
 	}
 
