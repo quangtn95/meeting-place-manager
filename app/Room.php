@@ -13,7 +13,7 @@ class Room extends Model
     //public $timestamp = false;
 
     public function meeting() {
-        return $this->hasMany('App\Meeting');
+        return $this->hasMany('App\Meeting', 'id', 'room_id');
     }
 
     public function form() {

@@ -13,3 +13,4 @@ function confirm_update(msg) {
 
 	return false;
 }
+

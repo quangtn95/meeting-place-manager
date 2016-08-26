@@ -18,6 +18,9 @@
 
     <!-- Custom CSS -->
     <link href="{{ url('public/admin/style.css') }}" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="{{ url('public/admin/jquery/jquery-3.1.0.min.js') }}"></script>
+
 </head>
 <body>
     <div id="wrapper">
@@ -39,13 +42,13 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <i class="glyphicon glyphicon-user"></i>  <i class="glyphicon glyphicon-triangle-bottom"></i>
+                                    <i class="glyphicon glyphicon-user"></i> Tài khoản {!! ucfirst(Auth::user()->username) !!} <i class="glyphicon glyphicon-triangle-bottom"></i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-user">
-                                    <li><a href="#"><i class="glyphicon glyphicon-user"></i> User Profile</a></li>
-                                    <li><a href="#"><i class="glyphicon glyphicon-cog"></i> Password</a></li>
+                                    {{-- <li><a href="#"><i class="glyphicon glyphicon-user"></i> User Profile</a></li> --}}
+                                    <li><a href="{!! URL::route('admin.user.getDetail', Auth::user()->id) !!}"><i class="glyphicon glyphicon-cog"></i> Account</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="{!! URL::route('getLogin') !!}"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
+                                    <li><a href="{!! URL::route('getLogout') !!}"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -61,6 +64,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="{!! URL::route('admin.room.getList') !!}">List Room</a></li>
                         <li><a href="{!! URL::route('admin.room.getAdd') !!}">Add Room</a></li>
+                        {{-- <li><a href="#" data-toggle="modal" data-target="#addRoom">Add Room</a></li> --}}
                     </ul>
                 </div>
 
@@ -80,14 +84,15 @@
                         User <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a href="#">List User</a></li>
-                        <li><a href="#">Add User</a></li>
+                        <li><a href="{!! URL::route('admin.user.getList') !!}">List User</a></li>
+                        <li><a href="{!! URL::route('admin.user.getAdd') !!}">Add User</a></li>
                     </ul>
                 </div>
 
                 <div class="btn-group">
-                    <a href="{!! URL::route('admin.search') !!}" class="btn btn-default">&nbsp;Search</a>
+                    <a href="{!! URL::route('admin.getSearch') !!}" class="btn btn-default">Search</a>
                 </div>
+                
             </div>{{-- end Menu-main --}}
             
             <div><br/></div>
@@ -104,10 +109,8 @@
                 @yield('content')
 
             </div>
-            
 
-             <!-- jQuery -->
-            <script src="{{ url('public/admin/jquery/jquery-3.1.0.min.js') }}"></script>
+            @include('web.admin.meeting.vidu');
             
             <script src="{{ url('public/admin/datetimepicker/jquery.datetimepicker.full.js') }}"></script>
 
@@ -115,6 +118,10 @@
             <script src="{{ url('public/admin/bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"></script>
 
             <script src="{{ url('public/admin/jquery/myscript.js') }}"></script>
+            <script src="{{ url('public/admin/js/scriptRoom.js') }}"></script>
+            <script src="{{ url('public/admin/js/scriptMeeting.js') }}"></script>
+            <script src="{{ url('public/admin/js/scriptUser.js') }}"></script>
+            
         </div>
         {{-- end Container --}}
     </div>

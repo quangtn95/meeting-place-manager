@@ -7,18 +7,28 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RoomRequest;
+use DB;
 use App\Room;
-use Input;
+use App\Meeting;
+use Input,File;
 
 class RoomController extends Controller
 {
 	public function getList(){
-		$data = Room::select('id', 'name', 'image', 'capacity', 'equipment')->orderBy('name', 'asc')->get();
-		return view('web.admin.room.list_room',compact('data'));
+		$data = Room::select('id', 'name', 'image', 'capacity', 'equipment')->orderBy('name', 'asc')->paginate(3);
+        return view('web.admin.room.list_room',compact('data'));
 	}
 
-	public function getDetail() {
-		return view('web.admin.room.detail_room');
+	public function getDetail($id) {
+
+        $data = Meeting::with('room')
+            ->where('meetings.room_id',$id)
+            ->orderBy('meetings.time_start', 'asc')
+            ->paginate(7);
+
+        $list_data = $data->toArray()['data'];
+        //dd($data);
+        return view('web.admin.room.detail_room', compact('data', 'list_data'));
 	}
 
     public function getAdd() {
@@ -61,7 +71,6 @@ class RoomController extends Controller
 
     public function getEdit($id) {
     	$data = Room::findOrFail($id)->toArray();
-    	//$data2 = Room::select('id', 'name', 'image', 'capacity', 'equipment')->get()->toArray();
     	return view('web.admin.room.edit_room', compact('data'));
     }
 
@@ -105,21 +114,40 @@ class RoomController extends Controller
                 return redirect()->route('admin.room.getList')->with(['flash_message'=>'Error']);
             }
         }else{
-            $room = Room::find($id);
-            $equipment = implode(', ', Input::get('equipment'));
+            if(($request->get('equipment')) != null) {
+                $room = Room::find($id);
+                $equipment = implode(', ', Input::get('equipment'));
 
-            $room->name      = $request->txtname;
-            $room->capacity  = $request->txtcapa;
-            $room->equipment = $equipment;
-            $room->save();
-            return redirect()->route('admin.room.getList')->with(['flash_message'=>'Success !! Complete Edit Room']);
+                $room->name      = $request->txtname;
+                $room->capacity  = $request->txtcapa;
+                $room->equipment = $equipment;
+                $room->save();
+                return redirect()->route('admin.room.getList')->with(['flash_message'=>'Success !! Complete Edit Room']);
+            }
+            else {
+                $room = Room::find($id);
+
+                $room->name      = $request->txtname;
+                $room->capacity  = $request->txtcapa;
+                $room->equipment = "Trống";
+                $room->save();
+                return redirect()->route('admin.room.getList')->with(['flash_message'=>'Success !! Complete Edit Room']);
+            }
+                
         }
             
     }
 
-    public function getDelete($id) {
-    	$room = Room::find($id);
-    	$room->delete($id);
-    	return redirect()->route('admin.room.getList')->with(['flash_message'=>'Success !! Complete Delete Room']);
+    // public function getDelete($id) {
+    // 	$room = Room::find($id);
+    //     File::delete('public/uploads/'.$room->image);
+    // 	$room->delete($id);
+    // 	return redirect()->route('admin.room.getList')->with(['flash_message'=>'Success !! Complete Delete Room']);
+    // }
+
+    public function getDelete(Request $request, $id) {
+        $room = Room::find($id);
+        File::delete('public/uploads/'.$room->image);
+        $room->delete($request->all());
     }
 }

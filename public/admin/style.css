@@ -11,6 +11,12 @@ body{
 	border: 20px;
 }
 
+.error_form {
+    font-size: 15px;
+    font-family: Arial;
+    color: #FF0052;
+}
+
 .day, .num, .title{
 	font-weight: bold;
 }
@@ -24,6 +30,13 @@ body{
 	background-color: #36984F;
 	color: #fff;
 }
+
+/*img.img { 
+	height: 80px;
+	width: 100px;
+    display: table-cell;
+    vertical-align: middle; 
+}*/
 
 .img{
 	height: 80px;

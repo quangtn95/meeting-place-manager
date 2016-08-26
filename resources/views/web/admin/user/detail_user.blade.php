@@ -1,9 +1,8 @@
 @extends('web.admin.master')
 @section('title', 'Profile User')
 @section('content')
-<br>
-<a href="" class="btn btn-default">&nbsp;Back</a>
-<h3 align="center">Chi tiết người dùng</h3>
+<a href="{!! URL::route('admin.user.getList') !!}" class="btn btn-default">&nbsp;Back</a>
+<h3 align="center">Chi tiết tài khoản</h3>
 
 <div class="row">
 
@@ -13,26 +12,43 @@
         <tbody>
             <tr>
                 <td class = "title">Username</td>
-                <td>quangtn</td>
+                <td>{!! $detail->username !!}</td>
             </tr>
 
             <tr>
                 <td class = "title">Email</td>
-                <td>truongquangqv@gmail.com</td>
+                <td>{!! $detail->email !!}</td>
             </tr>
 
             <tr>
                 <td class = "title">Role</td>
-                <td>Admin cấp 1</td>
+                <td>
+                    @if($detail->role == 1)
+                        {!! "Superadmin" !!}
+                    @elseif($detail->role == 2)
+                        {!! "Admin" !!}
+                    @else
+                        {!! "Member" !!}
+                    @endif
+
+                </td>
             </tr>
 
             <tr>
                 <td class = "title">Department</td>
-                <td>Phòng hành chính - nhân sự</td>
+                <td>{!! ucfirst($detail->dep_name) !!}</td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td>
+                    <a href="{!! URL::route('admin.user.postEdit', $detail->id) !!}" class="btn btn-success">&nbsp;Update Profile</a>
+                </td>
             </tr>
 
         </tbody>
+
     </table>
-	   
+
 </div>
 @stop

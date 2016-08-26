@@ -26,7 +26,7 @@ class User extends Authenticatable
     ];
 
     public function department() {
-        return $this->belongTo('App\Department');
+        return $this->belongsTo('App\Department', 'dep_id' ,'id');
     }
 
     public function meeting() {

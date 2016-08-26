@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class RoomRequest extends Request
+class SearchRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,17 @@ class RoomRequest extends Request
     public function rules()
     {
         return [
-            'txtname' => 'required|unique:rooms,name',
-            'image'   => 'required|mimes:jpg,png,jpeg|Max:1000KB'
+            'txtnum'    => 'required',
+            'txtstart'   => 'required',
+            'txtend'     => 'required'
         ];
     }
 
     public function messages() {
         return [
-            'txtname.required' => "Please Enter Room Name",
-            'txtname.unique'   => "This Room Name Is Exist",
-            'image.required'   => "Please Choose Image",
+            'txtnum.required'    => "Please Enter Number People",
+            'txtstart.required'   => "Please Enter Time Start",
+            'txtend.required'     => "Please Enter Time End"
         ];
     }
 }

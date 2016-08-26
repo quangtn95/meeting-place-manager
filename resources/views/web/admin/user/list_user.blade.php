@@ -2,6 +2,7 @@
 @section('title', 'List User')
 @section('content')
 <div class="row">
+
     <div class="col-lg-12">
         <h3>List Of Users</h3>
     </div>
@@ -14,36 +15,97 @@
                 <td>Userame</td>
                 <td>Email</td>
                 <td>Role</td>
-                <td>Actions</td>
+                <td>Department</td>
+                <td>Action</td>
             </tr>
         </thead>
             
         <tbody>
-            @for($i = 1; $i < 11; $i++)
+            
+            <?php $stt = 0?>
+            @foreach($list_data as $key => $item)
+            <?php $stt++ ?>
                 <tr align="center">
-                    <td class="num">{{ $i }}</td>
-                    <td>...</td>
-                    <td>...</td>
-                    <td>...</td>
+                    <td class="num">{!! $stt !!}</td>
+                    <td>{!! $item["username"] !!}</td>
+                    <td>{!! $item["email"] !!}</td>
                     <td>
-                        <a href="" class="btn btn-danger">Delete</a>
+                        @if($item["role"] == 1)
+                            {!! "Superadmin" !!}
+                        @elseif($item["role"] == 2)
+                            {!! "Admin" !!}
+                        @else
+                            {!! "Member" !!}
+                        @endif
+
                     </td>
+                    <td>{!! ucfirst($item['department']["name"]) !!}</td>
+                    @if($item["role"] > 1)
+                        {{-- <td>
+                            <a id="del-user" onclick="return confirm_update('Bạn có chắc muốn xóa không?')" href="{!! URL::route('admin.user.getDelete', $item['id']) !!}" class="btn btn-danger">Delete</a>
+                        </td> --}}
+
+                        <td>
+                            <form  id="delete_form{{ $item['id'] }}" class="deleteUser" name="delete_form" method="GET" action="{!! route('admin.user.getDelete', $item['id']) !!}" accept-charset="utf-8">
+                                <div style="display:none;">
+                                    <input type="hidden" name="_method" value="GET"/>
+                                </div>
+                                <div>
+                                    <button class="btn btn-danger getbutton" type="button" data-id="{!! $item['id'] !!}" >Delete </button>
+                                </div>
+                            </form>
+                        </td>
+
+                    @else
+                        <td></td>
+                    @endif
                 </tr>
 
-            @endfor
+            @endforeach
+
         </tbody>
     </table>
 
-    <ul class="pagination">
-        <li><a href="#">«</a></li>
-        <li class="active"><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li><a href="#">6</a></li>
-        <li><a href="#">»</a></li>
-    </ul>
+    {{ $data->links() }}
+    {{-- <ul class="pagination">
+        @if($data->currentPage() != 1)
+        <li><a href="{!! str_replace('/?','?',$data->url($data->currentPage() - 1)) !!}">Prev</a></li>
+        @endif
+        @for($i = 1; $i <= $data->lastPage(); $i++)
+        <li class="{!! ($data->currentPage() == $i) ? "active" : "" !!}"><a href="{!! str_replace('/?','?',$data->url($i)) !!}">{!! $i !!}</a></li>
+        @endfor
+        @if($data->currentPage() != $data->lastPage())
+        <li><a href="{!! str_replace('/?','?',$data->url($data->currentPage() + 1)) !!}">Next</a></li>
+        @endif
+    </ul> --}}
 
 </div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.deleteUser').on('click', function(e) {
+            var isconfirm = confirm('Xác nhận xóa ?');
+
+            if(isconfirm) {
+                var dataId = $(this).find('button').attr('data-id');
+                var isurl = $(this).attr('action');
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                
+                $.ajax({
+                    url:  isurl,
+                    method: 'GET',
+                    data: '',
+                    success : function(data){
+                        $('#delete_form'+dataId).parent().parent().remove();
+                    }
+                }); 
+            }
+        });
+    });
+
+</script>
 @stop

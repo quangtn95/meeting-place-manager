@@ -21,6 +21,6 @@ class Meeting extends Model
     }
 
     public function room() {
-        return $this->belongTo('App\Room');
+        return $this->belongsTo('App\Room', 'room_id', 'id');
     }
 }

@@ -36,11 +36,13 @@
                             <div class="form-group">
                                 <label>Room Name</label>
                                 <input name="txtname" class="form-control" maxlength="100" type="text" id="form_name" value="{!! old('txtname', isset($data) ? $data['name'] : null) !!}"/>
+                                <span class="error_form" id="name_error_message"></span>
                             </div>
 
                             <div class="form-group">
                                 <label>Capacity</label>
-                                <input name="txtcapa" class="form-control" maxlength="100" type="text" id="form_capacity" value="{!! old('txtcapa', isset($data) ? $data['capacity'] : null) !!}"/>
+                                <input name="txtcapa" class="form-control" maxlength="100" type="text" id="form_capacity"  value="{!! old('txtcapa', isset($data) ? $data['capacity'] : null) !!}"/>
+                                <span class="error_form" id="capa_error_message"></span>
                             </div>
 
                             <div class="form-group">

@@ -29,19 +29,9 @@
                         <h3 class="panel-title" align="center">LOGIN</h3>
                     </div>
 
-                    {{-- <div class="col-md-12">
-                        @if(Session::has('flash_message'))
-                            <div class="alert alert-success">
-                                {!! Session::get('flash_message') !!}
-                            </div>
-                        @endif
-                    </div> --}}
-
                     <div class="panel-body">
-
-                        <form role="form" action="" method="POST" id="login_form">
+                        <form role="form" action="" method="POST" action="">
                             <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-
                             @if(count($errors) > 0)
                                 <div class="alert alert-danger">
                                     <ul>
@@ -51,18 +41,15 @@
                                     </ul>
                                 </div>
                             @endif
-
                             <fieldset>
 
                                 <div class="form-group">
                                     <label for="username">Username</label>
-                                    <input class="form-control" name="username" type="text" placeholder="Username" value ="{!! old('username', isset($_POST['username']) ? $_POST['username'] : null) !!}" id="form_username" >
-                                    <span class="error_form" id="username_error_message"></span>
+                                    <input class="form-control" name="username" id="username" type="text" placeholder="Username" value ="{!! old('username', isset($_POST['username']) ? $_POST['username'] : null) !!}" >
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label>
-                                    <input class="form-control" name="password" type="password" placeholder="Password" value ="{!! old('password', isset($_POST['password']) ? $_POST['password'] : null) !!}" id="form_pass">
-                                    <span class="error_form" id="pass_error_message"></span>
+                                    <input class="form-control" name="password" id="password" type="password" placeholder="Password" value ="{!! old('password', isset($_POST['password']) ? $_POST['password'] : null) !!}">
                                 </div>
                                 <button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
                             </fieldset>
@@ -81,7 +68,6 @@
     <script src="{{ url('public/admin/bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"></script>
     
     <script src="{{ url('public/admin/jquery/myscript.js') }}"></script>
-    <script src="{{ url('public/admin/js/scriptLogin.js') }}"></script>
 </body>
 
 </html>

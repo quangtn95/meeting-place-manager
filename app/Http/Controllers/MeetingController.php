@@ -11,6 +11,7 @@ use App\Meeting;
 use App\Room;
 use Input;
 use DB;
+use Auth;
 use Carbon\Carbon;
 
 class MeetingController extends Controller
@@ -18,7 +19,7 @@ class MeetingController extends Controller
     public function getList(){
 		$data = Meeting::select('id', 'name', 'time_start', 'time_end', 'num_people', 'description', 'room_id', 'user_id')
         ->orderBy('time_start', 'asc')->paginate(7);
-		return view('web.admin.meeting.list_meeting',compact('data'));
+		return view('web.admin.meeting.list_meeting', compact('data'));
 	}
 
 	public function getDetail($id) {
@@ -46,7 +47,9 @@ class MeetingController extends Controller
         $meeting->num_people   = $request->Input('txtnum');
         $meeting->description  = $request->Input('txtdes');
         $meeting->room_id      = $request->Input('txtroom');
-        $meeting->user_id      = 3;
+        //$meeting->user_id      = 18;
+        $meeting->user_id      = Auth::user()->id;
+        
         $meeting->save();
         return redirect()->route('admin.meeting.getList')->with(['flash_message'=>'Success !! Complete Add Meeting']);
     }
@@ -66,15 +69,20 @@ class MeetingController extends Controller
         $meeting->num_people   = $request->Input('txtnum');
         $meeting->description  = $request->Input('txtdes');
         $meeting->room_id      = $request->Input('txtroom');
-        $meeting->user_id      = 3;
+        $meeting->user_id      = Auth::user()->id;
         $meeting->save();
         return redirect()->route('admin.meeting.getList')->with(['flash_message'=>'Success !! Complete Edit Meeting']);
             
     }
 
-    public function getDelete($id) {
+    // public function getDelete($id) {
+    //     $meeting = Meeting::find($id);
+    //     $meeting->delete($id);
+    //     return redirect()->route('admin.meeting.getList')->with(['flash_message'=>'Success !! Complete Delete Meeting']);
+    // }
+
+    public function getDelete(Request $request, $id) {
         $meeting = Meeting::find($id);
-        $meeting->delete($id);
-        return redirect()->route('admin.meeting.getList')->with(['flash_message'=>'Success !! Complete Delete Meeting']);
+        $meeting->delete($request->all());
     }
 }
